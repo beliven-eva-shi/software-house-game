@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Developer;
+use App\Models\Salesperson;
 use Illuminate\Http\Request;
 
-class DeveloperController extends Controller
+class SalespersonController extends Controller
 {
     public function edit(Request $request, $id)
     {
 
-        $task = Developer::findOrFail($id);
+        $task = Salesperson::findOrFail($id);
         $task->hired_flg = $request->input('hired_flg');
         $task->save();
 
-        return redirect("/hr")->with('success', 'Developer hired!');
+        return redirect("/hr")->with('success', 'Marketer hired!');
     }
 }
