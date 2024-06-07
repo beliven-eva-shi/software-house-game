@@ -14,6 +14,6 @@ class SalespersonController extends Controller
         $task->hired_flg = $request->input('hired_flg');
         $task->save();
 
-        return redirect("/hr")->with('success', 'Marketer hired!');
+        return redirect("/hr")->with('success', 'Salesperson hired!');
     }
 }

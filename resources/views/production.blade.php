@@ -3,12 +3,11 @@
     <body>
         <div style="display: flex; height: 100vh; padding: 20px;">
             <x-column>
-                <x-card>Oggetto 1</x-card>
+                <x-card>Progetti</x-card>
 
             </x-column>
             <x-column>
-                <x-card>Oggetto A
-                </x-card>
+                <x-card>Developers</x-card>
             </x-column>
         </div>
     </body>
