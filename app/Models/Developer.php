@@ -11,7 +11,7 @@ class Developer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'available_flg', 'hired_flg'];
+    protected $fillable = ['name', 'available_flg', 'hired_flg', 'seniority_lv', 'cost'];
 
     public function setSeniorityAttribute($value)
     //$dev->seniority=3
