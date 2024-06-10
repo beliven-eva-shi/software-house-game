@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('seniority_lv');
             $table->integer('cost');
-            $table->boolean('hired_flg');
+            $table->boolean('hired_flg')->default(0);
             $table->integer('time_new_project');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();

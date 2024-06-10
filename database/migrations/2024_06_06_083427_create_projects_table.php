@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('complexity');
             $table->integer('value');
             $table->integer('time_for_completion')->nullable(); //it has value only if a dev is assigned
+            $table->boolean('billed')->default(0);
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });
