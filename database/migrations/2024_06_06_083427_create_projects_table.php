@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('dev_id')->nullable();
             $table->integer('complexity');
             $table->integer('value');
+            $table->integer('time_for_completion')->nullable(); //it has value only if a dev is assigned
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

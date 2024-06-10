@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 class Project extends Model
 {
     use HasFactory;
+    protected $fillable = ['title', 'complexity', 'value'];
+
 
     public function user(): BelongsTo
     {
