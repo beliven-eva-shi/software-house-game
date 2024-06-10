@@ -16,6 +16,8 @@ class GenerateProject implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     const TIME_UDPATE = 1;
     const PROJECT_VALUE_FACTOR = 10;
+    const TIME_NEW_PROJECT_FACTOR = 2;
+
     /**
      * Create a new job instance.
      */
@@ -29,7 +31,7 @@ class GenerateProject implements ShouldQueue
      */
     public function handle(Faker $faker)
     {
-        $salespeople = Salesperson::all();
+        $salespeople = Salesperson::where('hired_flg', 1)->get();
 
 
         foreach ($salespeople as $salesperson) {
@@ -40,16 +42,18 @@ class GenerateProject implements ShouldQueue
 
                 $value = $complexity * $salesperson->seniority_lv * self::PROJECT_VALUE_FACTOR;
 
+
                 Project::create([
                     'title' => $faker->sentence,
                     'complexity' => $complexity,
                     'value' => $value,
-                    'time_for_completion' => 10,
+                    'time_for_completion' => null
+
 
                 ]);
 
 
-                $salesperson->time_new_project = 100;
+                $salesperson->time_new_project = $salesperson->seniority_lv * self::TIME_NEW_PROJECT_FACTOR;;
             }
 
             $salesperson->save();
