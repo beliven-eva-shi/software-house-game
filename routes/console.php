@@ -1,6 +1,8 @@
 <?php
 
+use App\Jobs\GenerateDev;
 use App\Jobs\GenerateProject;
+use App\Jobs\GenerateSalespeople;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -13,3 +15,5 @@ Artisan::command('inspire', function () {
 
 
 Schedule::job(new GenerateProject)->everySecond();
+Schedule::job(new GenerateDev)->everySecond();
+Schedule::job(new GenerateSalespeople)->everySecond();
