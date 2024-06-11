@@ -14,7 +14,7 @@ use Psy\VersionUpdater\SelfUpdate;
 class GenerateDev implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    const MAX_DEV_UNHIRED = 5;
+    const MAX_DEV_UNHIRED = 10;
     const COST_DEV_FACTOR = 2;
 
     /**

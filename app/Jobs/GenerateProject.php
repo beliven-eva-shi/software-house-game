@@ -53,7 +53,7 @@ class GenerateProject implements ShouldQueue
                 ]);
 
 
-                $salesperson->time_new_project = $salesperson->seniority_lv * self::TIME_NEW_PROJECT_FACTOR;;
+                $salesperson->time_new_project = $salesperson->seniority_lv * self::TIME_NEW_PROJECT_FACTOR;
             }
 
             $salesperson->save();
