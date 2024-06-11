@@ -4,6 +4,7 @@ use App\Jobs\GenerateDev;
 use App\Jobs\GenerateProject;
 use App\Jobs\GenerateSalespeople;
 use App\Jobs\UpdateAsset;
+use App\Jobs\UpdateProject;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -16,6 +17,7 @@ Artisan::command('inspire', function () {
 
 
 Schedule::job(new GenerateProject)->everySecond();
-Schedule::job(new GenerateDev)->everySecond();
-Schedule::job(new GenerateSalespeople)->everySecond();
-Schedule::job(new UpdateAsset)->everySecond();
+Schedule::job(new UpdateProject)->everySecond();
+Schedule::job(new GenerateDev)->everyTenSeconds();
+Schedule::job(new GenerateSalespeople)->everyTenSeconds();
+Schedule::job(new UpdateAsset)->everyTenSeconds();
