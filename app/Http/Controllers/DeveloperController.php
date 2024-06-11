@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class DeveloperController extends Controller
 {
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
 
-        $task = Developer::findOrFail($id);
-        $task->hired_flg = $request->input('hired_flg');
-        $task->save();
+        $dev = Developer::findOrFail($id);
+        $dev->hired_flg = 1;
+        $dev->save();
 
         return redirect("/hr")->with('success', 'Developer hired!');
     }
