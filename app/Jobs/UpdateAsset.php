@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 
 class UpdateAsset implements ShouldQueue
 {
@@ -28,26 +29,32 @@ class UpdateAsset implements ShouldQueue
      */
     public function handle(): void
     {
+
         $projects = Project::where('billed', 0)->whereNotNull('dev_id')->where('time_for_completion', '<=', 0)->get();
         $hiredSales = Salesperson::where('hired_flg', 1)->get();
         $hiredDevs = Developer::where('hired_flg', 1)->get();
         $session = GameSession::first();
 
-        foreach ($projects as $project) {
-            // Update assets with value of project
-            $session->company_assets += $project->value;
-            $project->billed = 1;
-            $project->save();
-        }
+        DB::transaction(function () use ($projects, $hiredSales, $hiredDevs, $session) {
+            foreach ($projects as $project) {
+                // Update assets with value of project
+                $session->company_assets += $project->value;
+                $project->billed = 1;
+                $project->save();
+                $dev = Developer::findOrFail($project->dev_id);
+                $dev->available_flg = 1;
+                $dev->save();
+            }
 
-        //Update asset with employee costs
-        foreach ($hiredDevs as $hiredDev) {
-            $session->company_assets -= $hiredDev->cost;
-        }
-        foreach ($hiredSales as $hiredSale) {
-            $session->company_assets -= $hiredSale->cost;
-        }
+            //Update asset with employee costs
+            foreach ($hiredDevs as $hiredDev) {
+                $session->company_assets -= $hiredDev->cost;
+            }
+            foreach ($hiredSales as $hiredSale) {
+                $session->company_assets -= $hiredSale->cost;
+            }
 
-        $session->save();
+            $session->save();
+        });
     }
 }
