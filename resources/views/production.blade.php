@@ -1,11 +1,16 @@
 <x-layout>
+    @livewireStyles
+
+
+    <livewire:assets />
+
 
 
     <body>
         <h1 style="font-size: 3em; font-weight: bold; text-align: center;">Production</h1>
         <div style="display: flex; height: 100vh; padding: 20px;">
             <x-column>
-                <h2 style="font-size: m; font-weight: bold; text-align: center;">Projects</h2>
+                {{-- <h2 style="font-size: m; font-weight: bold; text-align: center;">Projects</h2>
                 @foreach ($projects as $project)
                     <x-card>
                         <div>{{ $project->title }} </div>
@@ -21,7 +26,7 @@
                                     @method('PUT')
                                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="assign">
                                         Assign to: </label>
-                                    {{-- <input type="text" name="assegnato_a'" id="assegnato_a'" required> --}}
+
                                     <select name="assign" id="assign'" default='' required>
                                         <option></option>
                                         @foreach ($devs as $dev)
@@ -38,8 +43,9 @@
 
 
                     </x-card>
-                @endforeach
+                @endforeach --}}
 
+                <livewire:project-timer />
 
             </x-column>
             <x-column>
@@ -52,5 +58,6 @@
                 @endforeach
             </x-column>
         </div>
+        @livewireScripts
     </body>
 </x-layout>

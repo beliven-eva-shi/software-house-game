@@ -52,9 +52,7 @@
                 @endauth
             </div> --}}
         </nav>
-        <div>
-            Assets:
-        </div>
+
         {{ $slot }}
 
 
