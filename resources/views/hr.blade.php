@@ -1,4 +1,6 @@
 <x-layout>
+    @livewireStyles
+    <livewire:assets />
 
     <body>
         <h1 style="font-size: 3em; font-weight: bold; text-align: center;">HR</h1>
@@ -8,6 +10,9 @@
                 @foreach ($devs as $dev)
                     <x-card>
                         {{ $dev->name }}
+                        <div>Cost: {{ $dev->cost }}</div>
+                        <div>Seniority: {{ $dev->seniority_lv }}</div>
+
                         <form action="/hr/dev/{{ $dev->id }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -24,6 +29,9 @@
                 <h2 style="font-size: m; font-weight: bold; text-align: center;">Salespeople</h2>
                 @foreach ($sales as $sale)
                     <x-card> {{ $sale->name }}
+                        <div>Cost: {{ $sale->cost }}</div>
+                        <div>Seniority: {{ $sale->seniority_lv }}</div>
+
                         <form action="/hr/sales/{{ $sale->id }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -35,5 +43,6 @@
 
             </x-column>
         </div>
+        @livewireScripts
     </body>
 </x-layout>
